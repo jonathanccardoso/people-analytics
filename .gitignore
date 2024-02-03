@@ -128,3 +128,6 @@ requirements.txt.py
 #github
 .git
 drf/
+
+# virtual machine
+.wnea/

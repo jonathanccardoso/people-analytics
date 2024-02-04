@@ -4,7 +4,8 @@ from rest_framework.response import Response
 
 from django.db.models import Q
 
-from headcount.utils import generate_months, generate_series, get_first_and_last_day, get_infos_from_company
+from setup.utils import generate_months
+from headcount.utils import generate_series, get_first_and_last_day, get_infos_from_company
 from .models import Headcount
 
 

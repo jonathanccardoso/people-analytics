@@ -1,10 +1,6 @@
-
 # Teste técnico para Backend - 2024
 
 Como uma startup de people analytics nosso produto é voltado para expor os dados em forma de informações valiosas para nossos clientes. Fazemos isso atrávez de cards e gráficos com um storytelling focado na resolução dos problemas.
-
-
-
 
 ## Problema
 
@@ -14,24 +10,30 @@ Seu papel será implementar endpoints para dois dos problemas que resolvemos den
 
 Headcount, em uma empresa, refere-se ao número total de funcionários em um determinado período de tempo. Representa a contagem total de pessoas empregadas pela organização, independentemente de serem trabalhadores em tempo integral, parcial, temporário ou contratados por projeto. O headcount é uma métrica essencial para o dimensionamento da força de trabalho e é frequentemente utilizado por líderes e departamentos de recursos humanos para entender a dimensão da equipe.
 
-
 ### Endpoints propostos para Headcount
 
 ### Retorna o gráfico de linhas
 
-### Cálculo:    
+### Cálculo:
+
     contagem de ativos no período
     contagem de id_matricula onde fg_status = 1 dentro do periodo init_date e end_date
-### url:    
+
+### url:
+
 ```http
   GET /headcount/line_chart/
 ```
+
 ### Parâmetros
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
+
+| Parâmetro   | Tipo     | Descrição                                    |
+| :---------- | :------- | :------------------------------------------- |
 | `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `end_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
+| `end_date`  | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
+
 ### Resposta esperada
+
 ```http
   {
     "xAxis": {
@@ -94,29 +96,37 @@ Headcount, em uma empresa, refere-se ao número total de funcionários em um det
     ]
 }
 ```
+
 Os itens que serão sobrescritos serão:
+
 - response['xAxis']['data']
 - response['series']['series']
-   
+
 Os demais itens devem ficar iguais
 
 ### Retorna o gráfico categórico
 
-### Cálculo:    
+### Cálculo:
+
     contagem de ativos no último mês selecionado
     contagem de id_matricula onde fg_status = 1 dentro do mês passado por end_date
-### url:    
+
+### url:
+
 ```http
   GET /headcount/category_charts/
 ```
+
 ### Parâmetros
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `end_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `category` | `string` | **Obrigatório**. Qualquer campos de category da base |
+| Parâmetro   | Tipo     | Descrição                                            |
+| :---------- | :------- | :--------------------------------------------------- |
+| `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd         |
+| `end_date`  | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd         |
+| `category`  | `string` | **Obrigatório**. Qualquer campos de category da base |
+
 ### Resposta esperada
+
 ```http
 {
     "xAxis": {
@@ -156,11 +166,12 @@ Os demais itens devem ficar iguais
     "is%": false
 }
 ```
+
 Os itens que serão sobrescritos serão:
+
 - response['YAxis']['data']
 - response['series']['series']
-Os demais itens devem ficar iguais   
-
+  Os demais itens devem ficar iguais
 
 ## Turnover:
 
@@ -171,20 +182,26 @@ Turnover, por outro lado, é uma métrica que expressa a taxa de rotatividade de
 ### Retorna o gráfico de linhas
 
 ### Cálculo
+
     soma de demitidos no perído / média de ativos do período
-    (soma de fg_demitido_no_mes) / ((contagem de id_matricula onde fg_status = 1) / (quantidade de meses do período selecionado))    
+    (soma de fg_demitido_no_mes) / ((contagem de id_matricula onde fg_status = 1) / (quantidade de meses do período selecionado))
     período é a quantidade de meses entre init_date e end_date
+
 ### url
+
 ```http
   GET /turnover/line_chart/
 ```
+
 ### Parâmetros
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
+
+| Parâmetro   | Tipo     | Descrição                                    |
+| :---------- | :------- | :------------------------------------------- |
 | `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `end_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
+| `end_date`  | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
 
 ### Resposta esperada
+
 ```http
   {
     "xAxis": {
@@ -247,11 +264,13 @@ Turnover, por outro lado, é uma métrica que expressa a taxa de rotatividade de
     ]
 }
 ```
-Os itens que serão sobrescritos serão:
-- response['xAxis']['data']
-- response['series']['series']    
 
-Os demais itens devem ficar iguais   
+Os itens que serão sobrescritos serão:
+
+- response['xAxis']['data']
+- response['series']['series']
+
+Os demais itens devem ficar iguais
 
 ### Retorna o gráfico categórico
 
@@ -260,13 +279,15 @@ Os demais itens devem ficar iguais
 ```
 
 ### Parâmetros
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `end_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd |
-| `category` | `string` | **Obrigatório**. Qualquer campos de category da base |
+
+| Parâmetro   | Tipo     | Descrição                                            |
+| :---------- | :------- | :--------------------------------------------------- |
+| `init_date` | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd         |
+| `end_date`  | `string` | **Obrigatório**. Campo do formato yyyy-MM-dd         |
+| `category`  | `string` | **Obrigatório**. Qualquer campos de category da base |
 
 ### Resposta esperada
+
 ```http
 {
     "xAxis": {
@@ -306,10 +327,12 @@ Os demais itens devem ficar iguais
     "is%": false
 }
 ```
+
 Os itens que serão sobrescritos serão:
+
 - response['YAxis']['data']
 - response['series']['series']
-Os demais itens devem ficar iguais   
+  Os demais itens devem ficar iguais
 
 ## Instalação
 
@@ -319,16 +342,17 @@ Instale o projeto com:
   cd setup
   pip install -r requirements.txt
 ```
+
 ## Rodando o projeto
 
 Instale o projeto com:
 
 ```bash
-  python manage.py migrate    
+  python manage.py migrate
   python manage.py populate
-  python manage.py runserver    
+  python manage.py runserver
 ```
- 
+
 ## Entregáveis:
 
 - Compartilhe o repositório com os usuários felipeKosloski e lucasrbzrra no github

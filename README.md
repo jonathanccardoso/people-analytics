@@ -5,6 +5,7 @@
 ```bash
 ❯ python3 -m venv .wnea
 ❯ source .wnea/bin/activate
+❯ cp .env.sample .env
 ❯ sudo apt-get install libpq-dev python3-dev python3-venv
 ❯ pip install -r requirements.txt
 ```
@@ -69,12 +70,12 @@ Instale o projeto com:
       {
         "name": 2022,
         "type": "line",
-        "data": [[45, 44, 37, 43, 48, 43, 43, 44, 36, 54, 37, 36]]
+        "data": [45, 44, 37, 43, 48, 43, 43, 44, 36, 54, 37, 36]
       },
       {
         "name": 2023,
         "type": "line",
-        "data": [[0]]
+        "data": [0]
       }
     ]
   },
@@ -182,10 +183,7 @@ Instale o projeto com:
         "name": 2022,
         "type": "line",
         "data": [
-          [
-            0.76, 0.98, 1.16, 1.05, 1.06, 1.05, 0.91, 0.95, 0.89, 0.74, 0.84,
-            0.83
-          ]
+          0.76, 0.98, 1.16, 1.05, 1.06, 1.05, 0.91, 0.95, 0.89, 0.74, 0.84, 0.83
         ]
       }
     ]

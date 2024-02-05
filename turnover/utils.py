@@ -54,3 +54,30 @@ def generate_series_turnover(init_date, months, turnover_results):
             })
 
     return series
+
+def get_infos_by_company(init_date, end_date, employees):
+    companies_name = list(employees.values_list('ds_category_1', flat=True).distinct())
+
+    company_counts = {}
+    for company_name in companies_name:
+        employees_dismissal_length = Turnover.objects.filter(
+            ds_category_1=company_name,
+            fg_dismissal_on_month=1,
+            dt_reference_month__range=[init_date, end_date]
+        ).count()
+
+        employees_active_length = Turnover.objects.filter(
+            ds_category_1=company_name,
+            fg_status=1,
+            dt_reference_month__range=[init_date, end_date]
+        ).count()
+
+        # avoid division by zero
+        turnover_result = employees_dismissal_length / (employees_active_length or 1)
+        turnover_result = round(turnover_result, 2)
+
+        company_counts[company_name] = turnover_result
+
+    turnover_by_company = [count for _, count in company_counts.items()]
+
+    return companies_name, turnover_by_company

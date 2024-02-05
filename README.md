@@ -210,6 +210,10 @@ Instale o projeto com:
 
 #### Resposta
 
+```http
+  GET http://localhost:8000/turnover/category_charts/?init_date=2022-01-01&end_date=2022-12-31&category=Vendas
+```
+
 ```json
 {
   "xAxis": {
@@ -219,14 +223,14 @@ Instale o projeto com:
   },
   "yAxis": {
     "type": "category",
-    "data": ["Empresa 4", "Empresa 3", "Empresa 1", "Empresa 2"]
+    "data": ["Alexanderton", "Cookfurt", "East Jenniferview", "East Calvinfurt"]
   },
   "series": {
     "type": "horizontal_stacked",
     "series": [
       {
         "name": "Colaboradores",
-        "data": [97, 92.9, 91.3, 89.8],
+        "data": [0.92, 1.09, 0.81, 0.93],
         "type": "bar"
       }
     ]

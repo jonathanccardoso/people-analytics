@@ -63,7 +63,7 @@ class TurnoverInPeriodGraph(APIView):
             dt_reference_month__range=[init_date, end_date]
         )
 
-        companies_name, turnover_by_company = get_infos_by_company(init_date, end_date, employees)
+        companies_name, turnover_by_category = get_infos_by_company(init_date, end_date, category, employees)
 
         response_data = {
             "xAxis": {
@@ -79,8 +79,8 @@ class TurnoverInPeriodGraph(APIView):
                 "type": "horizontal_stacked",
                 "series": [
                     {
-                        "name": "Colaboradores",
-                        "data": turnover_by_company,
+                        "name": category,
+                        "data": turnover_by_category,
                         "type": "bar"
                     }
                 ]

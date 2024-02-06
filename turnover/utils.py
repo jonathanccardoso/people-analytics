@@ -1,5 +1,6 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.db.models import Q
 
 from headcount.utils import get_first_and_last_day
 from turnover.models import Turnover
@@ -55,18 +56,20 @@ def generate_series_turnover(init_date, months, turnover_results):
 
     return series
 
-def get_infos_by_company(init_date, end_date, employees):
+def get_infos_by_company(init_date, end_date, category, employees):
     companies_name = list(employees.values_list('ds_category_1', flat=True).distinct())
 
     company_counts = {}
     for company_name in companies_name:
         employees_dismissal_length = Turnover.objects.filter(
+            Q(ds_category_1=category) | Q(ds_category_2=category) | Q(ds_category_3=category) | Q(ds_category_4=category) | Q(ds_category_5=category),
             ds_category_1=company_name,
             fg_dismissal_on_month=1,
             dt_reference_month__range=[init_date, end_date]
         ).count()
 
         employees_active_length = Turnover.objects.filter(
+            Q(ds_category_1=category) | Q(ds_category_2=category) | Q(ds_category_3=category) | Q(ds_category_4=category) | Q(ds_category_5=category),
             ds_category_1=company_name,
             fg_status=1,
             dt_reference_month__range=[init_date, end_date]

@@ -87,7 +87,7 @@ class HeadcountInLastPeriod(APIView):
                 "type": "horizontal_stacked",
                 "series": [
                     {
-                        "name": "Colaboradores",
+                        "name": category,
                         "data": employee_counts_by_company,
                         "type": "bar"
                     }

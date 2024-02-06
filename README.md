@@ -120,7 +120,7 @@ Instale o projeto com:
     "type": "horizontal_stacked",
     "series": [
       {
-        "name": "Colaboradores",
+        "name": "TI",
         "data": [4, 2, 4, 2],
         "type": "bar"
       }
@@ -229,8 +229,8 @@ Instale o projeto com:
     "type": "horizontal_stacked",
     "series": [
       {
-        "name": "Colaboradores",
-        "data": [0.92, 1.09, 0.81, 0.93],
+        "name": "Vendas",
+        "data": [0.77, 1.0, 0.8, 1.09],
         "type": "bar"
       }
     ]
